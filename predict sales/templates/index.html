@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>House Price Forecast</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 120%;
+    }
+
+
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Open Sans Condensed', sans-serif;
+        background: url('/static/bg.png') no-repeat center center fixed; /* Updated path */
+        background-size: cover; /* Ensures the image covers the entire background */
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+        letter-spacing: 1.4px;
+    }
+    .login {
+        width: 90%;
+        max-width: 600px; /* Adjust the max width as needed */
+        background: #4682B4; /* Steel Blue */
+
+
+
+
+
+
+
+
+
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .login h1 {
+        color: #fff;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        letter-spacing: 1px;
+        text-align: center;
+        font-family: 'Pacifico', cursive;
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 100%;
+        margin-bottom: 10px;
+        background: #000;
+        border: none;
+        outline: none;
+        padding: 10px;
+        font-size: 13px;
+        color: #fff;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
+        transition: box-shadow 0.5s ease;
+    }
+
+    input:focus {
+        box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 10px;
+        font-size: 14px; /* Adjusted font size */
+        color: #fff;
+        text-align: center;
+        background-color: #4a77d4;
+        background-image: linear-gradient(to bottom, #6eb6de, #4a77d4);
+        border: 1px solid #3762bc;
+        border-radius: 4px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #4a77d4;
+        background-image: linear-gradient(to bottom, #6eb6de, #4a77d4);
+    }
+
+    .btn-primary {
+        color: #ffffff;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-primary:hover, .btn-primary:active, .btn-primary.active {
+        background-color: #4a77d4;
+    }
+
+    .btn-block {
+        width: 100%;
+        display: block;
+    }
+  </style>
+</head>
+
+<body>
+ <div class="login">
+    <h1>Sales Forecasting</h1>
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+        <input type="text" name="sqrt_lot" placeholder="area size" required="required" />
+        <input type="text" name="sqft_living15" placeholder="size of living space" required="required" />
+        <input type="text" name="age" placeholder="age of property" required="required" />
+        <input type="text" name="zipcode" placeholder="zipcode" required="required" />
+        <input type="text" name="bathrooms" placeholder="no. of bathrooms" required="required" />
+        <input type="text" name="bedrooms" placeholder="no. of bedrooms" required="required" />
+        <input type="text" name="renov_age" placeholder="total yrs of renovation" required="required" />
+        <input type="text" name="sqft_basement" placeholder="size of basement" required="required" />
+        <input type="text" name="grade" placeholder="overall house grade" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Forecast Sales</button>
+    </form>
+    <br>
+    <br>
+    {{ prediction_text }}
+ </div>
+</body>
+</html>

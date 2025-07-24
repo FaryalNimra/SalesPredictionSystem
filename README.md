@@ -9,7 +9,7 @@ This project demonstrates how to forecast sales based on advertisement budgets u
 To predict the `Sales` of a House in future based on the amount spent on:
 - Bed Rooms
 - Bath rooms
-- Garage
+- area size
 - Other Features
 
 ---
